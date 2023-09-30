@@ -1,4 +1,4 @@
-{% load staticfiles %}
+{% load static %}
 
 <div class="card room">
     <a href="{% url 'book:room' hostel.slug room.room_number %}"><img src="{{ room.get_main_image }}" alt="image of a room" class="card-img-top"></a>
