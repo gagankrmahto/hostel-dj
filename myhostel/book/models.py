@@ -9,33 +9,39 @@ from django.core.validators import ValidationError
 import re
 
 
-def sixteen_by_nine(width, height):
-    lane = width*9
-    lane = int(lane/16)
-    if lane == int(height):
-        return True
-    else:
-        return False
+# def sixteen_by_nine(width, height):
+#     lane = width*9
+#     lane = int(lane/16)
+#     if lane == int(height):
+#         return True
+#     else:
+#         return False
 
 
 # hostel compound
 class Hostel(models.Model):
-    name = models.CharField(max_length=400, help_text='Preferred name of the premises', unique=True)
+    id = models.IntegerField(auto_created=True,primary_key=True, unique=True, blank=False)
+    name = models.CharField(max_length=400, help_text='Preferred name of the premises', unique=True,)
     slug = models.SlugField(blank=True, unique=True)
-    location = models.CharField(max_length=400, help_text='Where is it found')
-    institution = models.CharField(
+    address = models.CharField(max_length=400, help_text='Where is it found')
+    city = models.CharField(
         max_length=400,
-        help_text='Always mention what Campus ie. Kisii University Main Campus'
+        help_text='City where hostel is located',
+        default="Ranchi"
     )
     available_rooms = models.IntegerField(default=0)
     all_rooms = models.IntegerField(blank=True, null=True)
-    distance_from_admin = models.IntegerField(help_text='How far is it from the administration building')
+    # distance_from_admin = models.IntegerField(help_text='How far is it from the administration building')
     water = models.BooleanField(default=False, help_text='Is there free water?')
     electricity = models.BooleanField(default=False, help_text='Is there free power?')
+    wifi = models.BooleanField(default=False, help_text='Is there free WiFi?')
+    girls_hostel = models.BooleanField(default=False, help_text='Girls Allowed ?')
+    boys_hostel = models.BooleanField(default=False, help_text='Boys Allowed ?')
+    wifi = models.BooleanField(default=False, help_text='Is there free WiFi?')
     price_range = models.CharField(
         max_length=300,
         blank=True,
-        help_text='Enter price range in the following format \'KSH 4500 - KSH 6000\''
+        help_text='Enter price range in the following format \'INR 4500 - INR 6000\''
     )
     views = models.IntegerField(default=0)
     bs = models.IntegerField(default=0)
@@ -48,11 +54,11 @@ class Hostel(models.Model):
         ordering = ['-id']
 
     def __str__(self):
-        return '{} at {}'.format(self.name, self.institution)
+        return '{} at {}'.format(self.name, self.city)
 
     def clean(self):
         # the price range should be in the correct format
-        if not re.search(r'KSH\s\d*\s-\sKSH\s\d*', str(self.price_range)):
+        if not re.search(r'INR\s\d*\s-\sINR\s\d*', str(self.price_range)):
             raise ValidationError(_('Please use the correct format for price range as described.'))
 
         # ranges should make sense
@@ -214,12 +220,12 @@ class RoomImage(models.Model):
         self.file.delete()
         return super().delete()
 
-    def clean(self):
-        # image to be 16:9
-        if not sixteen_by_nine(self.file.width, self.file.height):
-            raise ValidationError(_('Image is not 16:9 please crop it'))
+    # def clean(self):
+    #     # image to be 16:9
+    #     if not sixteen_by_nine(self.file.width, self.file.height):
+    #         raise ValidationError(_('Image is not 16:9 please crop it'))
 
-        return super().clean()
+        # return super().clean()
 
 
 def upload_hostel_to(instance, filename):
@@ -239,12 +245,12 @@ class HostelImage(models.Model):
         self.file.delete()
         return super().delete()
 
-    def clean(self):
-        # image to be 16:9
-        if not sixteen_by_nine(self.file.width, self.file.height):
-            raise ValidationError(_('Image is not 16:9 please crop it'))
+    # def clean(self):
+    #     # image to be 16:9
+    #     if not sixteen_by_nine(self.file.width, self.file.height):
+    #         raise ValidationError(_('Image is not 16:9 please crop it'))
 
-        return super().clean()
+    #     return super().clean()
 
 
 # bookings

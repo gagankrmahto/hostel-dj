@@ -14,7 +14,7 @@ class HostelModelTestCase(TestCase):
         self.hostel_1 = Hostel(
             name='The Crud',
             location='Uplands, Limuru, Kiambu',
-            institution='St. Paul\'s University Main Campus',
+            city='St. Paul\'s University Main Campus',
             price_range='KSH 4500 - KSH 6000',
             distance_from_admin='5000',
             water=True,

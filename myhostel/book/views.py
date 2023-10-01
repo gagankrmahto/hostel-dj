@@ -25,7 +25,7 @@ class Index(generic.ListView):
     def get_queryset(self):
         school = self.request.session.setdefault('school', None)
         if school:
-            query_set = Hostel.objects.filter(institution=school)
+            query_set = Hostel.objects.filter(city=school)
         else:
             query_set = Hostel.objects.all()
         return query_set.filter(all_rooms__gt=0).order_by('-available_rooms')
@@ -52,7 +52,7 @@ class HostelDetail(generic.DetailView):
     def hostel_suggestions(hostel):
         suggestions = Hostel.objects.filter(
             # suggest hostels from same school
-            institution__icontains=hostel.institution
+            city__icontains=hostel.city
         ).filter(
             # all to have available rooms
             available_rooms__gt=0
@@ -225,17 +225,17 @@ class Search(generic.TemplateView):
 
     @staticmethod
     def basic_search(query, school, **kwargs):
-        # search in the name, school and location fields
+        # search in the name, school and address fields
         q_set = (
                 Q(name__icontains=query) |
-                Q(institution__icontains=query) |
-                Q(location__icontains=query)
+                Q(city__icontains=query) |
+                Q(address__icontains=query)
         )
         query_set = kwargs.get('query_set', Hostel.objects.all())
         results = query_set.filter(q_set)
 
         if school:
-            results = results.filter(institution__contains=school)
+            results = results.filter(city__contains=school)
 
         return results.filter(available_rooms__gt=0).order_by('-available_rooms')
 
@@ -246,7 +246,7 @@ class Search(generic.TemplateView):
         query_set = kwargs.get('query_set', Hostel.objects.all())
         hostels = query_set.filter(available_rooms__gt=0).order_by('-available_rooms')
         if school:
-            hostels = hostels.filter(institution=school)
+            hostels = hostels.filter(city=school)
         res = []
 
         if kwargs['below']:
@@ -292,22 +292,22 @@ class Search(generic.TemplateView):
                 below = True
             results = self.price_search(look_up, school, below=below, query_set=hostel_set)
 
-        elif field in ["UNIVERSITY", "CAMPUS", "SCHOOL", "COLLEGE", "INSTITUTION", "VARSITY", "AT"]:
+        elif field in ["UNIVERSITY", "CAMPUS", "SCHOOL", "COLLEGE", "city", "VARSITY", "AT"]:
             # school search
-            term = 'institution'
+            term = 'city'
             results = hostel_set.filter(available_rooms__gt=0).filter(
-                institution__icontains=look_up
+                city__icontains=look_up
             ).order_by('-available_rooms')
 
         elif field in ["PLACE", "IN", "WHERE", "LOCATED"]:
-            # location search
-            term = 'location'
+            # address search
+            term = 'address'
             results = hostel_set.filter(available_rooms__gt=0).filter(
-                location__icontains=look_up
+                address__icontains=look_up
             ).order_by('-available_rooms')
 
             if school:
-                results = results.filter(institution=school)
+                results = results.filter(city=school)
 
         elif field in ["BEDROOM", "ROOM", "ROOMS"]:
             # house types
@@ -335,7 +335,7 @@ class Search(generic.TemplateView):
                 results = []
 
             if school:
-                results = results.filter(institution__icontains=school)
+                results = results.filter(city__icontains=school)
 
         return {'results': results, 'term': term, 'look_up': look_up}
 

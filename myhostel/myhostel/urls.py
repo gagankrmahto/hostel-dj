@@ -4,6 +4,7 @@ from django.conf.urls.static import static
 from django.views.static import serve
 from django.contrib import admin
 from django.conf import settings
+# from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from action import views as action_views
 from book import views as book_views
@@ -32,10 +33,10 @@ urlpatterns = [
     path('staff-actions/bookings/<int:pk>/delete/', book_views.BookingDelete.as_view(), name="booking-delete"),
 
     # specify-school/
-    path('specify-school/', action_views.add_school, name="specify"),
+    path('specify-city/', action_views.add_school, name="specify"),
 
     # un-specify-school/
-    path('un-specify-school/', action_views.remove_school, name="un-specify"),
+    path('un-specify-city/', action_views.remove_school, name="un-specify"),
 
     # favicon
     path('favicon.ico', RedirectView.as_view(url=settings.STATIC_URL+"favicon.ico")),
@@ -43,15 +44,15 @@ urlpatterns = [
     # help/
     path('help/', include('action.urls')),
 
-    # media  | comment out when debug is true
-    re_path('^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
-
-    # static  | comment out when debug is true
-    re_path('^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
-
 ]
 
 
-# if settings.DEBUG:
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+if settings.DEBUG:
+        # media  | comment out when debug is true
+    # urlpatterns+=re_path('^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT})
+    # static  | comment out when debug is true
+    # urlpatterns+=re_path('^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT})
+
+    # urlpatterns += staticfiles_urlpatterns()
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT,)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

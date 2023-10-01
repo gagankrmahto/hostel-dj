@@ -34,7 +34,7 @@ class BookingTestCase(TestCase):
         self.hostel_1 = Hostel(
             name='The Crud',
             location='Uplands, Limuru, Kiambu',
-            institution='St. Paul\'s University Main Campus',
+            city='St. Paul\'s University Main Campus',
             price_range='KSH 4500 - KSH 6000',
             distance_from_admin='5000',
             water=True,
@@ -44,7 +44,7 @@ class BookingTestCase(TestCase):
         self.hostel_2 = Hostel(
             name='Mary',
             location='Skia, Ruiru, Kiambu',
-            institution='Kenyatta University Ruiru Campus',
+            city='Kenyatta University Ruiru Campus',
             price_range='KSH 5000 - KSH 8000',
             distance_from_admin='4000',
             water=True,
@@ -54,7 +54,7 @@ class BookingTestCase(TestCase):
         self.hostel_3 = Hostel(
             name='The Third',
             location='Ki, Kisauni, Mombasa',
-            institution='St. Paul\'s University Coast Campus',
+            city='St. Paul\'s University Coast Campus',
             price_range='KSH 3000 - KSH 6000',
             distance_from_admin='5000',
             water=True,
@@ -64,7 +64,7 @@ class BookingTestCase(TestCase):
         self.hostel_4 = Hostel(
             name='Triper',
             location='Uplands, Limuru, Kiambu',
-            institution='St. Paul\'s University Main Campus',
+            city='St. Paul\'s University Main Campus',
             price_range='KSH 2500 - KSH 4000',
             distance_from_admin='6000',
             water=True,
@@ -74,7 +74,7 @@ class BookingTestCase(TestCase):
         self.hostel_5 = Hostel(
             name='5th',
             location='Githurai 44, Nairobi',
-            institution='KCA Main Campus',
+            city='KCA Main Campus',
             price_range='KSH 7000 - KSH 19000',
             distance_from_admin='400',
             water=True,
@@ -84,7 +84,7 @@ class BookingTestCase(TestCase):
         self.hostel_6 = Hostel(
             name='Kremlin',
             location='Uplands, Limuru, Kiambu',
-            institution='St. Paul\'s University Main Campus',
+            city='St. Paul\'s University Main Campus',
             price_range='KSH 10000 - KSH 16000',
             distance_from_admin='800',
             water=True,

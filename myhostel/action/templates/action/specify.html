@@ -1,22 +1,21 @@
 {% extends 'home/base.html' %}
-{% load staticfiles %}
+{% load static %}
 
-{% block title %}Specify school{% endblock title %}
+{% block title %}Search in City{% endblock title %}
 
 {% block style %}<link rel="stylesheet" type="text/css" href="{% static 'action/css/help.css' %}">{% endblock style %}
 
 {% block school %}active{% endblock school %}
 
 {% block crumb %}
-<li class="breadcrumb-item">Specify School</li>
+<li class="breadcrumb-item">Search City</li>
 {% endblock crumb %}
 
 {% block content %}
 
 <div id="spec" class="container">
-    <h1 class="text-center">Specify your School</h1>
-    <p class="lead text-center">To get more relevant search results please specify a school e.g. Kisii University,
-    main campus. {% if school %}<br /><small>You have currently choosen {{school}}.</small>{% endif %}
+    <h1 class="text-center">Specify your City</h1>
+    <p class="lead text-center">To get more relevant search results please specify a school e.g. Ranchi {% if school %}<br /><small>You have currently choosen {{school}}.</small>{% endif %}
     </p>
 
     <div class="container col-md-5 text-center">

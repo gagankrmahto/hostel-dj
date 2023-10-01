@@ -6,14 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#343a40">
-    <title>myHostelKenya | {% block title %}home{% endblock title %}</title>
+    <title>BookMyHostel | {% block title %}home{% endblock title %}</title>
     <link rel='stylesheet' type="text/css" href="{% static 'css/bootstrap.min.css' %}">
     <link rel='stylesheet' type="text/css" href="{% static 'css/base.css' %}">
     {% block style %}{% endblock style %}
 </head>
 <body>
         <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
-          <h1>myHostelKenya</h1>
+          <h1>BookMyHostel</h1>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -23,24 +23,24 @@
                 <a class="nav-link {% block home %}{% endblock home %}" href="\">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link {% block book %}{% endblock book %}" href="{% url 'book:index' %}">hostels</a>
+                <a class="nav-link {% block book %}{% endblock book %}" href="{% url 'book:index' %}">Hostels</a>
               </li>
               {% if user.is_authenticated %}
                   {% if user.is_staff %}
                   <li class="nav-item">
-                      <a class="nav-link" href="{% url 'admin:index' %}" target="_blank">admin page</a>
+                      <a class="nav-link" href="{% url 'admin:index' %}" target="_blank">Admin page</a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link {% block staff %}{% endblock staff %}"" href="{% url 'staff' %}">staff</a>
+                      <a class="nav-link {% block staff %}{% endblock staff %}"" href="{% url 'staff' %}">Staff</a>
                   </li>
                   {% endif %}
               {% endif %}
                 <li class="nav-item">
-                <a class="nav-link {% block help %}{% endblock help %}" href="{% url 'help:faq-index' %}">help</a>
+                <a class="nav-link {% block help %}{% endblock help %}" href="{% url 'help:faq-index' %}">Help</a>
               </li>
               </li>
                 <li class="nav-item">
-                <a class="nav-link {% block school %}{% endblock school %}" href="{% url 'specify' %}">school{% if school %} - {{school}}{% endif %}</a>
+                <a class="nav-link {% block school %}{% endblock school %}" href="{% url 'specify' %}">City{% if school %} - {{school}}{% endif %}</a>
               </li>
             </ul>
 
@@ -109,17 +109,17 @@
         <div class="container">
           <div class="row row-30">
             <div class="col-md-4 col-xl-5" id='part-1'>
-              <div class="pr-xl-4"><a class="brand" href=""><h7>myHostelKenya</h7></a>
-                <p>Search for private hostels in your Kenyan institution of choice. From Kisii University to the University of Nairobi.</p>
+              <div class="pr-xl-4"><a class="brand" href=""><h7>BookMyHostel</h7></a>
+                <p>Search the best hostels in Ranchi</p>
                 <!-- Rights-->
-                <p class="rights"><span>©  </span><span class="copyright-year">2018 - <span id="c-y"></span>. </span><span>All Rights Reserved.</span></p>
+                <p class="rights"><span>©  </span><span class="copyright-year"><span id="c-y"></span>. </span><span>All Rights Reserved.</span></p>
               </div>
             </div>
             <div class="col-md-4" id="contacts">
               <h5>Contacts</h5>
               <dl class="contact-list">
                 <dt>email:</dt>
-                <dd><a style="color: black;" href="mailto:#">help@myhostelkenya.com</a></dd>
+                <dd><a style="color: black;" href="mailto:#">help@BookMyHostel.com</a></dd>
               </dl>
               <dl class="contact-list">
                 <dt>phones:</dt>
@@ -130,10 +130,10 @@
             <div class="col-md-4 col-xl-3" id="more-foot">
               <h5>Links</h5>
               <ul class="nav-list">
-                <li><a style="color: black;" href="/help/faq/what-are-we/">About</a></li>
-                <li><a style="color: black;" href="/help/faq/how-to-search/">Learn how to search</a></li>
-                <li><a style="color: black;" href="/help/faq/how-does-the-site-work/">How to use this site</a></li>
-                <li><a style="color: black;" href="/help/faq/privacy-policy">Privacy Policy</a></li>
+                <li><a style="color: rgb(255, 0, 0);" href="/help/faq/what-are-we/">About</a></li>
+                <li><a style="color: rgb(255, 0, 0);" href="/help/faq/how-to-search/">Learn how to search</a></li>
+                <li><a style="color: rgb(255, 0, 0);" href="/help/faq/how-does-the-site-work/">How to use this site</a></li>
+                <li><a style="color: rgb(255, 0, 0);" href="/help/faq/privacy-policy">Privacy Policy</a></li>
               </ul>
             </div>
           </div>

@@ -5,12 +5,12 @@ admin.site.disable_action('delete_selected')
 
 class RoomImageInline(admin.TabularInline):
     model = RoomImage
-    extra = 4
+    extra = 2
 
 
 class HostelImageInline(admin.TabularInline):
     model = HostelImage
-    extra = 4
+    extra = 2
 
 
 class RoomAdmin(admin.ModelAdmin):
@@ -27,12 +27,12 @@ class RoomAdmin(admin.ModelAdmin):
 
 class HostelAdmin(admin.ModelAdmin):
     fieldsets = [
-        ('Hostel Details', {'fields': ['name', 'location', 'institution', 'price_range']}),
-        ('Info', {'fields': ['distance_from_admin', 'water', 'electricity']})
+        ('Hostel Details', {'fields': ['name', 'address', 'city', 'price_range']}),
+        ('Info', {'fields': ['water', 'electricity','wifi','girls_hostel','boys_hostel']})
     ]
-    list_display = ['name', 'institution', 'distance_from_admin', 'all_rooms']
-    list_filter = ['institution',]
-    search_fields = ['institution', 'location', 'name']
+    list_display = ['name', 'city', 'all_rooms']
+    list_filter = ['city',]
+    search_fields = ['city', 'address', 'name']
     inlines = (HostelImageInline,)
 
 
